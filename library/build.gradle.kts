@@ -1,12 +1,8 @@
-import org.jetbrains.kotlin.gradle.dsl.abi.ExperimentalAbiValidation
-
 plugins {
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.android.library)
     alias(libs.plugins.maven.publish)
     alias(libs.plugins.tapmoc)
     alias(libs.plugins.spotless)
-
 }
 
 dependencies {
@@ -15,13 +11,6 @@ dependencies {
     implementation(libs.rxandroid)
     implementation(libs.jsoup)
     implementation(libs.injekt)
-}
-
-kotlin {
-    @OptIn(ExperimentalAbiValidation::class)
-    abiValidation {
-        enabled.set(true)
-    }
 }
 
 android {
@@ -48,16 +37,16 @@ spotless {
 
 tapmoc {
     java(17)
-    kotlin("2.3.0")
+    kotlin("2.3.10")
 }
 
 mavenPublishing {
-    coordinates("com.github.mihonapp", "tachiyomix", "1.6.0-SNAPSHOT")
+    coordinates("com.github.keiyoushi", "extensions-lib", "1.4.2.2")
 
     pom {
-        name.set("TachiyomiX")
-        description.set("Tachiyomi based extension API for Mihon")
-        url.set("https://github.com/mihonapp/tachiyomix")
+        name.set("extensions-lib")
+        description.set("Stubs used for extensions in Tachiyomi and Mihon 0.x.")
+        url.set("https://github.com/keiyoushi/extensions-lib")
 
         licenses {
             license {
@@ -68,13 +57,13 @@ mavenPublishing {
         }
 
         organization {
-            name.set("Mihon Open Source Project")
-            url.set("https://github.com/mihon")
+            name.set("Keiyoushi")
+            url.set("https://github.com/keiyoushi")
         }
 
         scm {
-            connection.set("scm:git:git://github.com/mihonapp/tachiyomix.git")
-            url.set("https://github.com/mihonapp/tachiyomix")
+            connection.set("scm:git:git://github.com/keiyoushi/extensions-lib.git")
+            url.set("https://github.com/keiyoushi/extensions-lib")
         }
     }
 }
