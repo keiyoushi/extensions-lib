@@ -22,41 +22,23 @@ interface Source {
     val name: String
 
     /**
-     * Get the updated details for a manga.
+     * Returns an observable with the updated details for a manga.
      *
-     * @since extensions-lib 1.4
      * @param manga the manga to update.
-     * @return the updated manga.
      */
-    suspend fun getMangaDetails(manga: SManga): SManga = throw Exception("Stub!")
+    fun fetchMangaDetails(manga: SManga): Observable<SManga>
 
     /**
-     * Get all the available chapters for a manga.
+     * Returns an observable with all the available chapters for a manga.
      *
-     * @since extensions-lib 1.4
      * @param manga the manga to update.
-     * @return the chapters for the manga.
      */
-    suspend fun getChapterList(manga: SManga): List<SChapter> = throw Exception("Stub!")
+    fun fetchChapterList(manga: SManga): Observable<List<SChapter>>
 
     /**
-     * Get the list of pages a chapter has. Pages should be returned
-     * in the expected order; the index is ignored.
+     * Returns an observable with the list of pages a chapter has.
      *
      * @param chapter the chapter.
-     * @return the pages for the chapter.
      */
     fun fetchPageList(chapter: SChapter): Observable<List<Page>>
-
-    @Deprecated(
-        "Use the non-RxJava API instead",
-        ReplaceWith("getMangaDetails"),
-    )
-    fun fetchMangaDetails(manga: SManga): Observable<SManga> = throw Exception("Stub!")
-
-    @Deprecated(
-        "Use the non-RxJava API instead",
-        ReplaceWith("getChapterList"),
-    )
-    fun fetchChapterList(manga: SManga): Observable<List<SChapter>> = throw Exception("Stub!")
 }

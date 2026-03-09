@@ -51,7 +51,7 @@ abstract class HttpSource : CatalogueSource {
     /**
      * Headers builder for requests. Implementations can override this method for custom headers.
      */
-    open protected fun headersBuilder(): Headers.Builder {
+    protected open fun headersBuilder(): Headers.Builder {
         throw Exception("Stub!")
     }
 
@@ -143,7 +143,6 @@ abstract class HttpSource : CatalogueSource {
      *
      * @param manga the manga to be updated.
      */
-    @Deprecated("Use the non-RxJava API instead", replaceWith = ReplaceWith("getMangaDetails"))
     override fun fetchMangaDetails(manga: SManga): Observable<SManga> {
         throw Exception("Stub!")
     }
@@ -171,7 +170,6 @@ abstract class HttpSource : CatalogueSource {
      *
      * @param manga the manga to look for chapters.
      */
-    @Deprecated("Use the non-RxJava API instead", replaceWith = ReplaceWith("getChapterList"))
     override fun fetchChapterList(manga: SManga): Observable<List<SChapter>> {
         throw Exception("Stub!")
     }
@@ -182,7 +180,7 @@ abstract class HttpSource : CatalogueSource {
      *
      * @param manga the manga to look for chapters.
      */
-    open protected fun chapterListRequest(manga: SManga): Request {
+    protected open fun chapterListRequest(manga: SManga): Request {
         throw Exception("Stub!")
     }
 
@@ -208,7 +206,7 @@ abstract class HttpSource : CatalogueSource {
      *
      * @param chapter the chapter whose page list has to be fetched.
      */
-    open protected fun pageListRequest(chapter: SChapter): Request {
+    protected open fun pageListRequest(chapter: SChapter): Request {
         throw Exception("Stub!")
     }
 
@@ -235,7 +233,7 @@ abstract class HttpSource : CatalogueSource {
      *
      * @param page the chapter whose page list has to be fetched
      */
-    open protected fun imageUrlRequest(page: Page): Request {
+    protected open fun imageUrlRequest(page: Page): Request {
         throw Exception("Stub!")
     }
 
@@ -261,7 +259,7 @@ abstract class HttpSource : CatalogueSource {
      *
      * @param page the chapter whose page list has to be fetched
      */
-    open protected fun imageRequest(page: Page): Request {
+    protected open fun imageRequest(page: Page): Request {
         throw Exception("Stub!")
     }
 
@@ -293,7 +291,7 @@ abstract class HttpSource : CatalogueSource {
     private fun getUrlWithoutDomain(orig: String): String {
         throw Exception("Stub!")
     }
-    
+
     /**
      * Returns the url of the provided manga
      *
