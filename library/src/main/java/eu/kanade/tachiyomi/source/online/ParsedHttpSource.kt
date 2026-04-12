@@ -12,6 +12,7 @@ import org.jsoup.nodes.Element
  * A simple implementation for sources from a website using Jsoup, an HTML parser.
  */
 @Suppress("unused", "unused_parameter")
+@Deprecated("use HttpSource instead", replaceWith = ReplaceWith("HttpSource"))
 abstract class ParsedHttpSource : HttpSource() {
 
     /**
