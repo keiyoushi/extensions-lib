@@ -1,11 +1,11 @@
-The extensions library used in Mihon.
+The extensions library used in Mihon & forks
 
 ```
 ext {
-    libVersion = '1.4.4'
+    libVersion = '1.4.5'
 }
 
 dependencies {
-    compileOnly "com.github.mihonapp:tachiyomix:$libVersion"
+    compileOnly "com.github.keiyoushi:extensions-lib:$libVersion"
 }
 ```
