@@ -9,3 +9,5 @@ fun Call.asObservable(): Observable<Response> = throw Exception("Stub!")
 fun Call.asObservableSuccess(): Observable<Response> = throw Exception("Stub!")
 
 suspend fun Call.await(): Response = throw Exception("Stub!")
+
+suspend fun Call.awaitSuccess(): Response = throw Exception("Stub!")
