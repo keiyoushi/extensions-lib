@@ -95,6 +95,7 @@ public class androidx/preference/TwoStatePreference : androidx/preference/Prefer
 
 public final class eu/kanade/tachiyomi/AppInfo {
 	public static final field INSTANCE Leu/kanade/tachiyomi/AppInfo;
+	public final fun getShownMetaKeys ()Ljava/util/Set;
 	public final fun getVersionCode ()I
 	public final fun getVersionName ()Ljava/lang/String;
 }

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/keiyoushi/extensions-lib/blob/main/schema/memo-meta.schema.json",
+  "title": "memo[\"meta\"] of an SManga",
+  "description": "Structured details of a series, stored under the \"meta\" key of SManga.memo next to the plain fields that show the same facts. Every key except \"v\" is optional and left out when unknown. Keys added later keep \"v\"; readers ignore keys they don't know. The same object on an SChapter follows #/$defs/chapter.",
+  "type": "object",
+  "required": ["v"],
+  "properties": {
+    "v": {
+      "description": "Layout version. Changes only when an existing key changes meaning or shape.",
+      "const": 1
+    },
+    "rating": {
+      "description": "The site's rating as it gives it.",
+      "type": "object",
+      "required": ["value", "max"],
+      "properties": {
+        "value": { "description": "The rating, on the scale 0 to \"max\".", "type": "number" },
+        "max": { "description": "Top of the scale, e.g. 5, 10 or 100.", "type": "integer", "exclusiveMinimum": 0 },
+        "votes": { "description": "Number of ratings behind \"value\".", "type": "integer", "minimum": 0 }
+      }
+    },
+    "contentRating": {
+      "description": "Audience the site rates the series for.",
+      "enum": ["safe", "suggestive", "adult"]
+    },
+    "altTitles": {
+      "description": "Other titles of the series, in any language or script, without the title itself.",
+      "type": "array",
+      "items": { "$ref": "#/$defs/text" },
+      "uniqueItems": true
+    },
+    "trackers": {
+      "description": "The series' ids on trackers, keyed by tracker, e.g. {\"anilist\": \"30002\", \"myanimelist\": \"2\"}. Known keys: anilist, myanimelist, kitsu (numeric id or slug), mangaupdates (base-36 id, or the old numeric one), animeplanet (slug), mangabaka, shikimori, novelupdates (slug).",
+      "type": "object",
+      "propertyNames": { "pattern": "^[a-z]+$" },
+      "additionalProperties": { "$ref": "#/$defs/text" }
+    },
+    "links": {
+      "description": "The site's links for the series, in its order, e.g. the original publication, official translations, stores.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "url"],
+        "properties": {
+          "label": { "$ref": "#/$defs/text" },
+          "url": { "description": "Absolute http(s) URL.", "type": "string", "pattern": "^https?://" },
+          "language": {
+            "description": "Language of the linked edition, e.g. of an official translation, as a BCP 47 tag (ja, ko, zh-Hans, es-419).",
+            "type": "string",
+            "pattern": "^[A-Za-z]{2,3}(-[A-Za-z0-9]{1,8})*$"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "text": { "type": "string", "minLength": 1 },
+    "chapter": {
+      "title": "memo[\"meta\"] of an SChapter",
+      "description": "Structured details of a chapter, under the \"meta\" key of SChapter.memo. Every key except \"v\" is optional.",
+      "type": "object",
+      "required": ["v"],
+      "properties": {
+        "v": { "const": 1 },
+        "locked": {
+          "description": "The site serves the chapter's pages only after a purchase, a login or a wait. Left out when false.",
+          "const": true
+        }
+      }
+    }
+  }
+}
