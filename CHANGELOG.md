@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `SManga.memo` and `SChapter.memo`; Internal JSON object associated with the manga or chapter.
 - `HttpException`; Use it to have a standardized error message in the app across the extensions.
 - `Call.awaitSuccess`; `Call.await` variant with a check to `Response.isSuccessful`.
+- `AppInfo.getShownMetaKeys`; Keys of `memo["meta"]` the app shows itself, specified by `schema/memo-meta.schema.json`.
 
 ### Deprecated
 - `CatalogueSource.fetchPopularManga`; Deprecated in favor of `Source.getPopularManga`.
